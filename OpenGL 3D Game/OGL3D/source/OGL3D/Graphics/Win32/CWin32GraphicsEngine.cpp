@@ -1,27 +1,37 @@
 #include <OGL3D/Graphics/OGraphicsEngine.h>
-#include <OGL3D/Window/OWindow.h>
 #include <glad/glad_wgl.h>
 #include <glad/glad.h>
 #include <assert.h>
+#include <OGL3D/Window/OWindow.h>
 #include <stdexcept>
 
 OGraphicsEngine::OGraphicsEngine()
 {
-	WNDCLASSEX wc = {};
-	wc.cbSize = sizeof(WNDCLASSEX);
-	wc.lpszClassName = L"OGL3DummyDWindow";
-	wc.lpfnWndProc = DefWindowProc;
-	wc.style = CS_OWNDC;
+    WNDCLASSEX windowClass = {};
+    windowClass.style = CS_OWNDC;
+    windowClass.lpfnWndProc = DefWindowProcA;
+    windowClass.lpszClassName = L"OGL3DDummyWindow";
+    windowClass.cbSize = sizeof(WNDCLASSEX);
 
-	auto classId = RegisterClassEx(&wc);
-	assert(classId);
+    auto classId = RegisterClassEx(&windowClass);
 
-	auto dummyWindow = CreateWindowEx(NULL, MAKEINTATOM(classId), L"", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT,
-		CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, NULL, NULL);
+    HWND dummyWindow = CreateWindowEx(
+        0,
+        MAKEINTATOM(classId),
+        L"OGL3DDummyWindow",
+        0,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        0,
+        0,
+        windowClass.hInstance,
+        0);
 
-	assert(dummyWindow);
+    assert(dummyWindow);
 
-	auto dummyDC = GetDC(dummyWindow);
+    HDC dummyDC = GetDC(dummyWindow);
 
 	PIXELFORMATDESCRIPTOR pixelFormatDesc = {};
 	pixelFormatDesc.nSize = sizeof(PIXELFORMATDESCRIPTOR);
@@ -37,10 +47,13 @@ OGraphicsEngine::OGraphicsEngine()
 	auto pixelFormat = ChoosePixelFormat(dummyDC, &pixelFormatDesc);
 	SetPixelFormat(dummyDC, pixelFormat, &pixelFormatDesc);
 
-	auto  dummyContext = wglCreateContext(dummyDC);
-	assert(dummyContext);
 
-	wglMakeCurrent(dummyDC, dummyContext);
+
+    HGLRC dummyContext = wglCreateContext(dummyDC);
+    assert(dummyContext);
+
+    bool res = wglMakeCurrent(dummyDC, dummyContext);
+    assert(res);
 
 	if (!gladLoadWGL(dummyDC))
 	{

@@ -1,4 +1,5 @@
 #include <OGL3D/Window/OWindow.h>
+#include <OGL3D/Game/OGame.h>
 #include <glad/glad_wgl.h>
 #include <glad/glad.h>
 #include <Windows.h>
@@ -30,6 +31,7 @@ OWindow::OWindow()
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.lpszClassName = L"OGL3DWindow";
 	wc.lpfnWndProc = &WndProc;
+	wc.style = CS_OWNDC;
 
 	auto classId = RegisterClassEx(&wc);
 	assert(classId);
@@ -87,6 +89,13 @@ OWindow::~OWindow()
 {
 	wglDeleteContext(HGLRC(m_context));
 	DestroyWindow(HWND(m_handle));
+}
+
+ORect OWindow::getInnerSize()
+{
+	RECT rc = {};
+	GetClientRect((HWND)m_handle, &rc);
+	return ORect(rc.right - rc.left, rc.bottom - rc.top);
 }
 
 void OWindow::makeCurrentContext()
