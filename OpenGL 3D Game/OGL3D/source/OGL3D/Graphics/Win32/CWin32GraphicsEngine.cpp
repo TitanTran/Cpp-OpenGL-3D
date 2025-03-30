@@ -33,19 +33,19 @@ OGraphicsEngine::OGraphicsEngine()
 
     HDC dummyDC = GetDC(dummyWindow);
 
-	PIXELFORMATDESCRIPTOR pixelFormatDesc = {};
-	pixelFormatDesc.nSize = sizeof(PIXELFORMATDESCRIPTOR);
-	pixelFormatDesc.nVersion = 1;
-	pixelFormatDesc.iPixelType = PFD_TYPE_RGBA;
-	pixelFormatDesc.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-	pixelFormatDesc.cColorBits = 32;
-	pixelFormatDesc.cAlphaBits = 8;
-	pixelFormatDesc.cDepthBits = 24;
-	pixelFormatDesc.cStencilBits = 8;
-	pixelFormatDesc.iLayerType = PFD_MAIN_PLANE;
+    PIXELFORMATDESCRIPTOR pfd = {};
+    pfd.nSize = sizeof(pfd);
+    pfd.nVersion = 1;
+    pfd.iPixelType = PFD_TYPE_RGBA;
+    pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+    pfd.cColorBits = 32;
+    pfd.cAlphaBits = 8;
+    pfd.iLayerType = PFD_MAIN_PLANE;
+    pfd.cDepthBits = 24;
+    pfd.cStencilBits = 8;
 
-	auto pixelFormat = ChoosePixelFormat(dummyDC, &pixelFormatDesc);
-	SetPixelFormat(dummyDC, pixelFormat, &pixelFormatDesc);
+    int pixelFormat = ChoosePixelFormat(dummyDC, &pfd);
+    SetPixelFormat(dummyDC, pixelFormat, &pfd);
 
 
 
@@ -55,21 +55,20 @@ OGraphicsEngine::OGraphicsEngine()
     bool res = wglMakeCurrent(dummyDC, dummyContext);
     assert(res);
 
-	if (!gladLoadWGL(dummyDC))
-	{
-		throw std::runtime_error("Failed to load WGL");
-	}
 
-	if (!gladLoadGL())
-	{
-		throw std::runtime_error("Failed to load WGL");
-	}
+    if (!gladLoadWGL(dummyDC))
+        OGL3D_ERROR("OGraphicsEngine - gladLoadWGL failed");
+    
+    if (!gladLoadGL())
+        OGL3D_ERROR("OGraphicsEngine - gladLoadGL failed");
+    
 
-	wglMakeCurrent(dummyDC, 0);
-	wglDeleteContext(dummyContext);
-	ReleaseDC(dummyWindow, dummyDC);
-	DestroyWindow(dummyWindow);
+    wglMakeCurrent(dummyDC, 0);
+    wglDeleteContext(dummyContext);
+    ReleaseDC(dummyWindow, dummyDC);
+    DestroyWindow(dummyWindow);
 }
+
 
 OGraphicsEngine::~OGraphicsEngine()
 {

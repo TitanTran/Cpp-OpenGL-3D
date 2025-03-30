@@ -6,11 +6,11 @@ int main()
 	try
 	{
 		OGame game;
-		game.Run();
+		game.run();
 	}
 	catch (const std::exception& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;
+		std::wclog << e.what() << std::endl;
 		return -1;
 	}
 

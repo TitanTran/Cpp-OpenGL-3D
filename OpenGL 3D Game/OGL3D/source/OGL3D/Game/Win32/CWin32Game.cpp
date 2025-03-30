@@ -2,7 +2,7 @@
 #include <OGL3D/Window/OWindow.h>
 #include <Windows.h>
 
-void OGame::Run()
+void OGame::run()
 {
 	onCreate();
 	while (m_isRunning)
@@ -20,10 +20,6 @@ void OGame::Run()
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
-		}
-		else
-		{
-			Sleep(1);
 		}
 
 		onUpdate();

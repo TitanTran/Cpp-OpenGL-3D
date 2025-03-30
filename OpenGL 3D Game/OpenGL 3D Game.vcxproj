@@ -107,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +135,7 @@
     <ClCompile Include="Game\main.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Game\OGame.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Game\Win32\CWin32Game.cpp" />
+    <ClCompile Include="OGL3D\source\OGL3D\Graphics\OShaderProgram.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Graphics\Win32\CWin32GraphicsEngine.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Window\CWin32Window.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Graphics\OGraphicsEngine.cpp" />
@@ -143,12 +145,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OGL3D\include\OGL3D\Game\OGame.h" />
+    <ClInclude Include="OGL3D\include\OGL3D\Graphics\OShaderProgram.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Math\ORect.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Math\OVec4.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Window\OWindow.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Graphics\OGraphicsEngine.h" />
     <ClInclude Include="OGL3D\include\OGL3D\OPrerequisites.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Graphics\OVertexArrayObject.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\BasicShader.frag" />
+    <None Include="Assets\Shaders\BasicShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
