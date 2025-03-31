@@ -1,6 +1,7 @@
 #pragma once
 #include <OGL3D/OPrerequisites.h>
 
+
 class OVertexArrayObject
 {
 public:
@@ -11,7 +12,6 @@ public:
 
 	ui32 getVertexBufferSize();
 	ui32 getVertexSize();
-
 private:
 	ui32 m_vertexBufferId = 0;
 	ui32 m_vertexArrayObjectId = 0;

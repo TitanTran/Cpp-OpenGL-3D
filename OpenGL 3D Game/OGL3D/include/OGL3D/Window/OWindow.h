@@ -1,6 +1,8 @@
 #pragma once
 #include <OGL3D/Math/ORect.h>
 
+
+
 class OWindow
 {
 public:

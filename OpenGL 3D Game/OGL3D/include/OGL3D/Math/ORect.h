@@ -10,5 +10,4 @@ public:
 	ORect(const ORect& rect) :left(rect.left), top(rect.top), width(rect.width), height(rect.height) {}
 public:
 	i32 width = 0, height = 0, left = 0, top = 0;
-
 };
