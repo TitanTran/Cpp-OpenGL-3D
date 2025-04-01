@@ -148,6 +148,7 @@
     <ClInclude Include="OGL3D\include\OGL3D\Game\OGame.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Graphics\OShaderProgram.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Graphics\OUniformBuffer.h" />
+    <ClInclude Include="OGL3D\include\OGL3D\Math\OMat4.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Math\ORect.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Math\OVec4.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Window\OWindow.h" />

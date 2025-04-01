@@ -33,6 +33,6 @@ protected:
 	OShaderProgramPtr m_shader;
 
 	std::chrono::system_clock::time_point m_previousTime;
-	f32 m_scale = 0;
+	f32 m_scale = -3;
 };
 

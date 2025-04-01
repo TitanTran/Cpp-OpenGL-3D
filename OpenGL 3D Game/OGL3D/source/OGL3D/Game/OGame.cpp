@@ -3,10 +3,11 @@
 #include <OGL3D/Graphics/OVertexArrayObject.h>
 #include <OGL3D/Graphics/OShaderProgram.h>
 #include <OGL3D/Graphics/OUniformBuffer.h>
+#include <OGL3D/Math/OMat4.h>
 
 struct UniformData
 {
-	f32 scale;
+	OMat4 world;
 };
 
 
@@ -87,12 +88,33 @@ void OGame::onUpdate()
 
 
 
-	m_scale += 3.14f * deltaTime;
+	m_scale += 1.14f * deltaTime;
 	auto currentScale = abs(sin(m_scale));
 
 
+	OMat4 world,temp;
 
-	UniformData data = { currentScale };
+	temp.setIdentity();
+	temp.setScale(OVec4(1, 1, 1, 1));
+	world *= temp;
+
+	temp.setIdentity();
+	temp.setRotationZ(m_scale);
+	world *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(m_scale);
+	world *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(m_scale);
+	world *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(OVec4(0, 0, 0, 1));
+	world *= temp;
+
+	UniformData data = { world };
 	m_uniform->setData(&data);
 
 
