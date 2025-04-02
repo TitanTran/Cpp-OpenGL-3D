@@ -133,6 +133,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game\main.cpp" />
+    <ClCompile Include="Game\GameApp.cpp" />
+    <ClCompile Include="Game\PlayerEntity.cpp" />
+    <ClCompile Include="OGL3D\source\OGL3D\Entity\OEntity.cpp" />
+    <ClCompile Include="OGL3D\source\OGL3D\Entity\OEntitySystem.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Game\OGame.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Game\Win32\CWin32Game.cpp" />
     <ClCompile Include="OGL3D\source\OGL3D\Graphics\OShaderProgram.cpp" />
@@ -145,6 +149,11 @@
     <ClCompile Include="OGL3D\source\OGL3D\Graphics\OVertexArrayObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\GameApp.h" />
+    <ClInclude Include="Game\PlayerEntity.h" />
+    <ClInclude Include="OGL3D\include\OGL3D\All.h" />
+    <ClInclude Include="OGL3D\include\OGL3D\Entity\OEntity.h" />
+    <ClInclude Include="OGL3D\include\OGL3D\Entity\OEntitySystem.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Game\OGame.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Graphics\OShaderProgram.h" />
     <ClInclude Include="OGL3D\include\OGL3D\Graphics\OUniformBuffer.h" />

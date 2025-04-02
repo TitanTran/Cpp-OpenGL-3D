@@ -1,11 +1,11 @@
-#include <OGL3D/Game/OGame.h>
+#include "GameApp.h"
 #include <iostream>
 
 int main()
 {
 	try
 	{
-		OGame game;
+		GameApp game;
 		game.run();
 	}
 	catch (const std::exception& e)
@@ -15,4 +15,4 @@ int main()
 	}
 
 	return 0;
-};
+}
